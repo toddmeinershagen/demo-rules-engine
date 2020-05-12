@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json;
 using RulesEngine.Extensions;
 using RulesEngine.Interfaces;
 using RulesEngine.Models;
@@ -12,14 +10,9 @@ namespace Demo.RulesEngineProof
     {
         private readonly IRulesEngine _engine;
 
-        public DiscountService()
+        public DiscountService(IRulesRepository repository)
         {
-            var files = Directory.GetFiles(Directory.GetCurrentDirectory(), "Discount.json", SearchOption.AllDirectories);
-            if (files == null || files.Length == 0)
-                throw new Exception("Rules not found.");
-
-            var fileData = File.ReadAllText(files[0]);
-            var rules = JsonConvert.DeserializeObject<WorkflowRules[]>(fileData);
+            var rules = repository.GetRules("Discount.json");
             _engine = new RulesEngine.RulesEngine(rules, null);
         }
 

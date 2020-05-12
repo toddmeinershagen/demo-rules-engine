@@ -10,9 +10,9 @@ namespace Demo.RulesEngineProof
     {
         static void Main(string[] args)
         {
-            WithTimer(RunRetirementScenario);
-            Console.WriteLine();
             WithTimer(RunDiscountScenario);
+            Console.WriteLine();
+            WithTimer(RunRetirementScenario);
 
             Console.ReadLine();
         }
@@ -27,7 +27,8 @@ namespace Demo.RulesEngineProof
 
         private static void RunRetirementScenario()
         {
-            var service = new RetirementService();
+            var repository = new RulesRepository();
+            var service = new RetirementService(repository);
             var employee = new Employee { LengthOfServiceInDays = 25, IsOverridden = true };
             var isEligible = service.IsEligible(employee);
 
@@ -52,7 +53,8 @@ namespace Demo.RulesEngineProof
                     input3
                 };
 
-            var discountService = new DiscountService();
+            var repository = new RulesRepository();
+            var discountService = new DiscountService(repository);
             var discountOffered = discountService.CalculateDiscount(inputs);
             var discountMessage = discountOffered == 0m 
                 ? "The user is not eligible for any discount." 
