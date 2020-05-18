@@ -5,9 +5,7 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using RulesEngine;
 using RulesEngine.Extensions;
-using RulesEngine.Interfaces;
 using RulesEngine.Models;
 
 namespace Demo.RulesEngineProof
