@@ -8,7 +8,7 @@
           "ErrorMessage": "Employee is not eligible.",
           "ErrorType": "Error",
           "RuleExpressionType": "LambdaExpression",
-          "Expression": "input1.LengthOfServiceInDays >= 60 OR input1.IsOverridden == true"
+          "Expression": "input1.LengthOfServiceInDays >= 90 OR input1.IsOverridden == true"
         }]
     }
 ]
